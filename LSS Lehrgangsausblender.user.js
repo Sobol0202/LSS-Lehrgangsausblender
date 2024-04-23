@@ -270,10 +270,10 @@
                             var educationSettings = filterSettings[filter]["education_keys"];
                             if (educationSettings && educationSettings[educationKey] !== undefined && educationSettings[educationKey]) {
                                 radioElements[i].style.display = 'none';
-                                console.log('Verstecke Lehrgang:', filter, 'mit education_key:', educationKey);
+                                //console.log('Verstecke Lehrgang:', filter, 'mit education_key:', educationKey);
                             } else {
                                 radioElements[i].style.display = '';
-                                console.log('Zeige Lehrgang:', filter, 'mit education_key:', educationKey);
+                                //console.log('Zeige Lehrgang:', filter, 'mit education_key:', educationKey);
                             }
                         }
                     }
