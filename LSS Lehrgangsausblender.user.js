@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LSS Lehrgangsausblender
 // @namespace    www.leitstellenspiel.de
-// @version      1.1
+// @version      1.2
 // @description  Versteckt Lehrgänge, die nicht gewünscht/benötigt werden
 // @author       MissSobol
 // @match        https://www.leitstellenspiel.de/buildings/*
@@ -13,45 +13,216 @@
 
     // Definiere welche Lehrgänge versteckt werden sollen (true um zu verstecken, false um anzuzeigen)
     var filterSettings = {
-        "Messtechnik": false,
-        "GW-Gefahrgut Lehrgang (3 Tage)": false,
-        "Höhenrettung": false,
-        "ELW 2": false,
-        "Wechsellader": false,
-        "Dekon-P": false,
-        "Feuerwehrkran": false,
-        "Flugfeldlöschfahrzeug": false,
-        "Rettungstreppen": false,
-        "Werkfeuerwehr": false,
-        "Feuerwehr-Verpflegungseinheit": false,
-        "LNA": false,
-        "OrgL": false,
-        "SEG - Einsatzleitung": false,
-        "SEG - GW-San": false,
-        "Rettungshundeführer (SEG)": false,
-        "SEG Drohne": false,
-        "Zugtrupp": false,
-        "Fachgruppe Räumen": false,
-        "Fachgruppe Wassergefahren": false,
-        "Fachgruppe Bergungstaucher": false,
-        "Fachgruppe Rettungshundeführer": false,
-        "Fachgruppe Wasserschaden/Pumpen": false,
-        "Fachgruppe Schwere Bergung": false,
-        "Fachgruppe Elektroversorgung": false,
-        "Trupp Unbemannte Luftfahrtsysteme": false,
-        "Führung und Kommunikation": false,
-        "Zugführer": false,
-        "Hundertschaftsführer": false,
-        "Polizeihubschrauber": false,
-        "Wasserwerfer": false,
-        "SEK": false,
-        "MEK": false,
-        "Hundeführer (Schutzhund)": false,
-        "Motorradstaffel": false,
-        "Brandbekämpfung": false,
-        "Kriminalpolizei": false,
-        "Dienstgruppenleitung": false,
-        "Reiterstaffel": false,
+        "Messtechnik":{
+            "education_keys": {
+                "0": false, //Messtechnik Feuerwehr
+            }
+        },
+        "GW-Gefahrgut Lehrgang": {
+            "education_keys": {
+                "1": false, //Gefahrgut Feuerwehr
+            }
+        },
+        "Höhenrettung": {
+            "education_keys": {
+                "2": false, //Höhenrettung Feuerwehr
+            }
+        },
+        "ELW 2": {
+            "education_keys": {
+                "3": false, //ELW2 Feuerwehr
+            }
+        },
+        "Wechsellader": {
+            "education_keys": {
+                "4": false, //Wechsellader Feuerwehr
+            }
+        },
+        "Dekon-P": {
+            "education_keys": {
+                "5": false, //DekonP Feuerwehr
+            }
+        },
+        "Feuerwehrkran": {
+            "education_keys": {
+                "6": false, //FwK Feuerwehr
+            }
+        },
+        "Flugfeldlöschfahrzeug": {
+            "education_keys": {
+                "10": false, //FLF Feuerwehr
+            }
+        },
+        "Rettungstreppen": {
+            "education_keys": {
+                "11": false, //Rettungstreppe Feuerwehr
+            }
+        },
+        "Werkfeuerwehr": {
+            "education_keys": {
+                "12": false, //Werkfeuerwehr Feuerwehr
+            }
+        },
+        "Feuerwehr-Verpflegungseinheit": {
+            "education_keys": {
+                "16": true, //Feuerwehr-Verpflegungseinheit Feuerwehr
+            }
+        },
+        "NEA200": {
+            "education_keys": {
+                "14": false, //NEA200 Feuerwehr
+            }
+        },
+        "Drohnen-Schulung": {
+            "education_keys": {
+                "15": false, //Drohne Feuerwehr
+            }
+        },
+        "LNA": {
+            "education_keys": {
+                "1": false, //LNA Rettungsdienst
+            }
+        },
+        "OrgL": {
+            "education_keys": {
+                "2": false, //OrgL Rettungsdienst
+            }
+        },
+        "Betreuungsdienst": {
+            "education_keys": {
+                "10": false, //Betreuungsdienst Rettungsdienst
+            }
+        },
+        "SEG - Einsatzleitung": {
+            "education_keys": {
+                "3": false, //ELW-SEG
+            }
+        },
+        "SEG - GW-San": {
+            "education_keys": {
+                "4": false, //GW-San SEG
+            }
+        },
+        "Rettungshundeführer (SEG)": {
+            "education_keys": {
+                "7": false, //Rettungshundeführer SEG
+            }
+        },
+        "SEG Drohne": {
+            "education_keys": {
+                "9": false, //Drohne SEG
+            }
+        },
+        "Zugtrupp": {
+            "education_keys": {
+                "0": false, //Zugtruppe THW
+            }
+        },
+        "Fachgruppe Räumen": {
+            "education_keys": {
+                "1": false, //Räumen THW
+            }
+        },
+        "Fachgruppe Wassergefahren": {
+            "education_keys": {
+                "2": true, //Wassergefahren THW
+            }
+        },
+        "Fachgruppe Bergungstaucher": {
+            "education_keys": {
+                "3": true, //Bergungstaucher THW
+            }
+        },
+        "Fachgruppe Rettungshundeführer": {
+            "education_keys": {
+                "4": false, //Rettungshund THW
+            }
+        },
+        "Fachgruppe Wasserschaden/Pumpen": {
+            "education_keys": {
+                "5": false, //Pumpen THW
+            }
+        },
+        "Fachgruppe Schwere Bergung": {
+            "education_keys": {
+                "6": false, //SB THW
+            }
+        },
+        "Fachgruppe Elektroversorgung": {
+            "education_keys": {
+                "7": false, //Elektroversorgung THW
+            }
+        },
+        "Trupp Unbemannte Luftfahrtsysteme": {
+            "education_keys": {
+                "8": false, //Drohne THW
+            }
+        },
+        "Führung und Kommunikation": {
+            "education_keys": {
+                "9": true, //Kommunikation THW
+            }
+        },
+        "Zugführer": {
+            "education_keys": {
+                "0": false, //Zugführer Polizei
+            }
+        },
+        "Hundertschaftsführer": {
+            "education_keys": {
+                "1": false, //Hundertschaftsführer Polizei
+            }
+        },
+        "Polizeihubschrauber": {
+            "education_keys": {
+                "2": false, //Polizeihubschrauber Polizei (duh)
+            }
+        },
+        "Wasserwerfer": {
+            "education_keys": {
+                "3": false, //Wasserwerfer Polizei
+            }
+        },
+        "SEK": {
+            "education_keys": {
+                "4": false, //SEK Polizei
+            }
+        },
+        "MEK": {
+            "education_keys": {
+                "5": false, //MEK Polizei
+            }
+        },
+        "Hundeführer (Schutzhund)": {
+            "education_keys": {
+                "6": false, //Schutzhund Polizei
+            }
+        },
+        "Motorradstaffel": {
+            "education_keys": {
+                "7": false, //Motorrad Polizei
+            }
+        },
+        "Brandbekämpfung": {
+            "education_keys": {
+                "8": false, //Löschen Polizei
+            }
+        },
+        "Kriminalpolizei": {
+            "education_keys": {
+                "9": false, //Kripo Polizei (was du nicht sagst)
+            }
+        },
+        "Dienstgruppenleitung": {
+            "education_keys": {
+                "10": false, //DGL Polizei
+            }
+        },
+        "Reiterstaffel": {
+            "education_keys": {
+                "11": false, //Pferd Polizei
+            }
+        },
         "Notarzt-Ausbildung": {
             "education_keys": {
                 "0": false, // Notarzt Rettungsdienst
@@ -60,7 +231,7 @@
         },
         "Verpflegungshelfer": {
             "education_keys": {
-                "11": false, // Verpflegungshelfer Rettungsdienst
+                "11": true, // Verpflegungshelfer Rettungsdienst
                 "17": true, // Verpflegungshelfer Feuerwehr
             }
         },
