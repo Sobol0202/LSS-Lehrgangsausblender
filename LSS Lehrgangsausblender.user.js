@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LSS Lehrgangsausblender
 // @namespace    www.leitstellenspiel.de
-// @version      1.0
+// @version      1.1
 // @description  Versteckt Lehrgänge, die nicht gewünscht/benötigt werden
 // @author       MissSobol
 // @match        https://www.leitstellenspiel.de/buildings/*
@@ -14,7 +14,7 @@
     // Definiere welche Lehrgänge versteckt werden sollen (true um zu verstecken, false um anzuzeigen)
     var filterSettings = {
         "Messtechnik": false,
-        "Gefahrgut": false,
+        "GW-Gefahrgut Lehrgang (3 Tage)": false,
         "Höhenrettung": false,
         "ELW 2": false,
         "Wechsellader": false,
@@ -61,13 +61,13 @@
         "Verpflegungshelfer": {
             "education_keys": {
                 "11": false, // Verpflegungshelfer Rettungsdienst
-                "17": false, // Verpflegungshelfer Feuerwehr
+                "17": true, // Verpflegungshelfer Feuerwehr
             }
         },
         "Intensivpflege": {
             "education_keys": {
                 "8": false, // Intansivpflege Rettungsdienst
-                "13": false, // Intansivpflege Feuerwehr
+                "13": true, // Intansivpflege Feuerwehr
             }
         },
         "Wasserrettung": {
@@ -99,8 +99,10 @@
                             var educationSettings = filterSettings[filter]["education_keys"];
                             if (educationSettings && educationSettings[educationKey] !== undefined && educationSettings[educationKey]) {
                                 radioElements[i].style.display = 'none';
+                                console.log('Verstecke Lehrgang:', filter, 'mit education_key:', educationKey);
                             } else {
                                 radioElements[i].style.display = '';
+                                console.log('Zeige Lehrgang:', filter, 'mit education_key:', educationKey);
                             }
                         }
                     }
